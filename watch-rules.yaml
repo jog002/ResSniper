@@ -9,20 +9,22 @@ restaurants:
   4-charles-prime-rib:
     venue_id: 834
     auto_book: true
+    notify: true
     party_size: 2
     accept_any_time: true
-    min_hours_out: 24
-    max_days_out: 60
-    poll_interval_sec: 20
+    min_hours_out: 65
+    max_days_out: 30
+    poll_interval_sec: 30
     hot_hours: [14, 15, 16, 17, 18]   # 2-6 PM ET — cancellations cluster here
-    hot_poll_interval_sec: 10
+    hot_poll_interval_sec: 20
 
   carbone:
     venue_id: 6194
-    auto_book: true
+    auto_book: false
+    notify: true
     party_size: 2
-    preferred_times: ["19:00", "19:15", "19:30", "18:45", "20:00"]
-    fallback_times: ["18:30", "20:15", "20:30"]
+    preferred_times: ["19:00", "19:15", "19:30", "19:45", "20:00"]
+    fallback_times: ["20:15", "20:30"]
     min_hours_out: 48
     max_days_out: 30
     poll_interval_sec: 60
@@ -32,6 +34,10 @@ restaurants:
     auto_book: false
     notify: true
     party_size: 2
+    preferred_times: ["19:00", "19:15", "19:30", "19:45", "20:00"]
+    fallback_times: ["20:15", "20:30"]
+    min_hours_out: 48
+    max_days_out: 30
     poll_interval_sec: 90
 
   # SevenRooms example: find venue_key with:

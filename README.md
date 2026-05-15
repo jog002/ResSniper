@@ -14,25 +14,24 @@ playwright install chromium
 # 2. Credentials
 cp credentials.yaml.example credentials.yaml
 chmod 600 credentials.yaml
-# Fill in auth_token (see below), then:
+# Fill in account_email, then get your auth token:
+python refresh_auth.py               # opens a browser; log in manually if prompted
+# Paste the token into credentials.yaml, then:
 python manage.py lookup-payment-id   # prints your payment_id
 # Add payment_id to credentials.yaml
 
-# 3. Get your auth token (first run)
-python refresh_auth.py               # opens a browser; log in manually if prompted
-
-# 4. Verify notifications
+# 3. Verify notifications
 python manage.py test-notify
 
-# 5. Look up venue IDs if needed
-python lookup_venue.py https://resy.com/cities/ny/4-charles-prime-rib
+# 4. Look up venue IDs if needed
+python manage.py lookup-venue https://resy.com/cities/ny/4-charles-prime-rib
 
-# 6. Edit watch-rules.yaml with your restaurants
+# 5. Edit watch-rules.yaml with your restaurants
 
-# 7. Run watcher in foreground to confirm
+# 6. Run watcher in foreground to confirm
 python watcher.py
 
-# 8. Deploy via launchd (Mac mini)
+# 7. Deploy via launchd (Mac mini)
 mkdir -p logs
 # Edit launchd/com.oscargiller.resy-sniper.plist — update paths to match your install location
 cp launchd/com.oscargiller.resy-sniper.plist ~/Library/LaunchAgents/
@@ -100,7 +99,13 @@ scheduled-drops.yaml      # known drop times
 state/seen.json           # dedup cache (24h TTL)
 state/booked.json         # booking log (append-only)
 logs/                     # watcher stdout/stderr (launchd)
-lib/                      # resy_client, notifier, auth
+launchd/                  # macOS LaunchAgent plist
+lib/
+  provider_base.py        # Slot dataclass + ReservationProvider protocol
+  providers.py            # provider factory + venue/provider resolution
+  resy_client.py          # Resy API client
+  auth.py                 # credential loading/saving
+  notifier.py             # macOS notifications
 watcher.py                # cancellation polling daemon
 snipe.py                  # one-shot booker (subprocess)
 scheduled_snipe.py        # scheduled drop sniper
