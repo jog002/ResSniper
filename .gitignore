@@ -1,0 +1,9 @@
+credentials.yaml
+state/
+logs/
+scripts/playwright-state/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store

@@ -1,0 +1,17 @@
+[Unit]
+Description=Resy cancellation watcher
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=oscar
+WorkingDirectory=/home/oscar/resy-sniper
+ExecStart=/home/oscar/resy-sniper/.venv/bin/python watcher.py
+Restart=on-failure
+RestartSec=30
+StandardOutput=append:/home/oscar/resy-sniper/logs/watcher.log
+StandardError=append:/home/oscar/resy-sniper/logs/watcher.err
+
+[Install]
+WantedBy=multi-user.target

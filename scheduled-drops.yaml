@@ -1,0 +1,9 @@
+drops:
+  carbone:
+    venue_id: 6194
+    drop_time_et: "09:00"
+    days_in_advance: 30
+    party_size: 2
+    preferred_times: ["19:00", "19:15", "19:30", "18:45", "20:00"]
+    fallback_times: ["18:30", "20:15"]
+    schedule_dates: weekdays
