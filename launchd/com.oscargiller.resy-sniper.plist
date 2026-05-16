@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.oscargiller.resy-sniper</string>
+    <string>com.oscargiller.resy-sniper.macmini</string>
 
     <key>ProgramArguments</key>
     <array>
